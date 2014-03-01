@@ -1,0 +1,20 @@
+{
+  "name": "mediaelementjs-h264-firefox",
+  "version": "0.0.0",
+  "homepage": "https://github.com/ahmednuaman/mediaelementjs-h264-firefox",
+  "authors": [
+    "Ahmed Nuaman <ahmed@ahmednuaman.com>"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "mediaelement": "~2.13.2"
+  }
+}
