@@ -1,0 +1,40 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="bower_components/mediaelement/build/mediaelementplayer.min.css">
+  <title>Test</title>
+</head>
+<body>
+  <video width="320" height="240" id="mediaelement">
+    <object width="320" height="240" type="application/x-shockwave-flash" data="bower_components/mediaelement/build/flashmediaelement.swf">
+      <param name="movie" value="bower_components/mediaelement/build/flashmediaelement.swf" />
+    </object>
+  </video>
+  <script src="bower_components/jquery/dist/jquery.min.js"></script>
+  <script src="bower_components/mediaelement/build/mediaelement-and-player.js"></script>
+  <script>
+    $(document).ready(function () {
+      $('#mediaelement').mediaelementplayer({
+        features: ['playpause','progress','current','duration','tracks','volume','fullscreen'],
+        alwaysShowControls: true,
+        enableAutosize: true,
+        plugins: ['flash'],
+        pluginPath: 'bower_components/mediaelement/build/',
+        flashName: 'flashmediaelement.swf',
+        success: function (player, el) {
+          $.getJSON('//api.brightcove.com/services/library?command=find_video_by_id&video_id=2790007957001&video_fields=id%2Cname%2CshortDescription%2CFLVURL&media_delivery=default&callback=?&token=ZY4Ls9Hq6LCBgleGDTaFRDLWWBC8uoXQun0xEEXtlDUHBDPZBCOzbw..', function (response) {
+            player.setSrc([
+              { src: response.FLVURL, type: 'video/mp4' }
+            ]);
+
+            player.load();
+          });
+        },
+        error: function () {
+          debugger;
+        }
+      });
+    });
+  </script>
+</body>
+</html>
