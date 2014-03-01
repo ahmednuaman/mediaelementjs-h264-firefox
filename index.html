@@ -2,6 +2,8 @@
 <head>
   <meta charset="UTF-8">
   <link rel="stylesheet" href="bower_components/mediaelement/build/mediaelementplayer.min.css">
+  <script src="bower_components/jquery/dist/jquery.min.js"></script>
+  <script src="bower_components/mediaelement/build/mediaelement-and-player.js"></script>
   <title>Test</title>
 </head>
 <body>
@@ -10,8 +12,6 @@
       <param name="movie" value="bower_components/mediaelement/build/flashmediaelement.swf" />
     </object>
   </video>
-  <script src="bower_components/jquery/dist/jquery.min.js"></script>
-  <script src="bower_components/mediaelement/build/mediaelement-and-player.js"></script>
   <script>
     $(document).ready(function () {
       $('#mediaelement').mediaelementplayer({
@@ -21,8 +21,9 @@
         plugins: ['flash'],
         pluginPath: 'bower_components/mediaelement/build/',
         flashName: 'flashmediaelement.swf',
+        type: ['video/mp4', 'video/flv'],
         success: function (player, el) {
-          $.getJSON('//api.brightcove.com/services/library?command=find_video_by_id&video_id=2790007957001&video_fields=id%2Cname%2CshortDescription%2CFLVURL&media_delivery=default&callback=?&token=ZY4Ls9Hq6LCBgleGDTaFRDLWWBC8uoXQun0xEEXtlDUHBDPZBCOzbw..', function (response) {
+          $.getJSON('//api.brightcove.com/services/library?command=find_video_by_id&video_id=2790007957001&video_fields=id%2Cname%2CshortDescription%2CFLVURL&media_delivery=http&callback=?&token=ZY4Ls9Hq6LCBgleGDTaFRDLWWBC8uoXQun0xEEXtlDUHBDPZBCOzbw..', function (response) {
             player.setSrc([
               { src: response.FLVURL, type: 'video/mp4' }
             ]);
@@ -31,7 +32,7 @@
           });
         },
         error: function () {
-          debugger;
+          // debugger;
         }
       });
     });
